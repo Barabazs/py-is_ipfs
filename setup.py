@@ -1,9 +1,15 @@
 import setuptools
 
+with open("README.MD") as f:
+    long_description = f.read()
+
+
 setuptools.setup(
     name="py-is_ipfs",
     version="0.0.1",
     description="Python library to identify valid IPFS resources",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     url="https://github.com/Barabazs/py-is_ipfs",
     author="Barabazs",
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
