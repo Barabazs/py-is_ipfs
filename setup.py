@@ -2,7 +2,7 @@ import setuptools
 
 setuptools.setup(
     name="is_ipfs",
-    version="0.0.0",
+    version="0.0.1",
     description="Python library to identify valid IPFS resources",
     url="https://github.com/Barabazs/py-is_ipfs",
     author="Barabazs",
@@ -18,5 +18,9 @@ setuptools.setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+    ],
+    install_requires=[
+        "py-cid>=0.3.0<1.0.0",
+        "py-multibase>=1.0.3,<2.0.0",
     ],
 )
