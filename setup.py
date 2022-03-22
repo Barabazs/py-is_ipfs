@@ -1,7 +1,7 @@
 import setuptools
 
 setuptools.setup(
-    name="is_ipfs",
+    name="py-is_ipfs",
     version="0.0.1",
     description="Python library to identify valid IPFS resources",
     url="https://github.com/Barabazs/py-is_ipfs",
@@ -9,7 +9,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
     license="MIT",
     classifiers=[
-        "Development Status :: 1 - Planning",
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
