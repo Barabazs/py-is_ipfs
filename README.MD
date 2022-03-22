@@ -1,6 +1,6 @@
 # py-is_ipfs
 
-Py-is_ipfs is a Python library to identify valid IPFS resources.  
+py-is_ipfs is a Python library to identify valid IPFS resources.  
 This project is a work in progress.
 
 
