@@ -1,12 +1,18 @@
+import typing
+
 import cid
 from multibase import decode
 
 
 class Validator:
-    def __init__(self, input):
+    """
+    Class for validating IPFS resources.
+    """
+
+    def __init__(self, input: typing.Any):
         self.input = input
 
-    def is_ipfs(self):
+    def is_ipfs(self) -> bool:
         """
         Returns True if the provided input is a valid IPFS CID or False otherwise.
         """
@@ -23,8 +29,10 @@ class Validator:
                 return cid.is_cid(decode(self.input))
             except:
                 return False
-        try:
-            if isinstance(self.input, (cid.CIDv0, cid.CIDv1)):
-                return cid.is_cid(str(self.input))
-        except:
-            return False
+        else:
+            try:
+                if isinstance(self.input, (cid.CIDv0, cid.CIDv1)):
+                    return cid.is_cid(str(self.input))
+            except:
+                return False
+        return False
