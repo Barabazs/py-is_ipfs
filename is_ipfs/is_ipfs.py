@@ -19,7 +19,10 @@ class Validator:
         if type(self.input) == str:
             return cid.is_cid(self.input)
         elif type(self.input) == bytes:
-            return cid.is_cid(decode(self.input))
+            try:
+                return cid.is_cid(decode(self.input))
+            except:
+                return False
         try:
             if isinstance(self.input, (cid.CIDv0, cid.CIDv1)):
                 return cid.is_cid(str(self.input))
