@@ -1,49 +1,38 @@
 from is_ipfs import Validator
-import cid
 import unittest
+import tests.testing_data as testing_data
 
 
 class TestCase(unittest.TestCase):
-    def test_is_ipfs(self):
-        # Test valid CIDv0 strings
-        self.assertTrue(
-            Validator("QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o").is_ipfs()
-        )
-        # Test invalid CIDv0 strings
-        self.assertFalse(
-            Validator("QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70").is_ipfs()
-        )
+    def test_all(self):
 
-        # Test valid CIDv1 strings
-        self.assertTrue(
-            Validator(
-                "bafybeie2reiz2q6rbcuwpy2etyztjnceolu4rdi7rp3th2lsky4r5ckeey"
-            ).is_ipfs()
-        )
+        with self.subTest("Test valid CID entries from fixtures"):
+            for key, value in testing_data.valid_entries["cid"].items():
+                for entries in value:
+                    self.assertTrue(Validator(entries).is_ipfs())
 
-        # Test invalid CIDv1 strings
-        self.assertFalse(
-            Validator(
-                "bafybeie2reiz2q6rbcuwpy2etyztjnceolu4rdi7rp3th2lsky4r5ckee"
-            ).is_ipfs()
-        )
+        with self.subTest("Test invalid CID entries from fixtures"):
+            for key, value in testing_data.invalid_entries["cid"].items():
+                for entries in value:
+                    self.assertFalse(Validator(entries).is_ipfs())
 
-        # Test invalid misc input
-        self.assertFalse(Validator("").is_ipfs())
-        self.assertFalse(Validator(1345).is_ipfs())
+        with self.subTest("Test valid IPFS URL entries from fixtures"):
+            for key, value in testing_data.valid_entries["url"].items():
+                for entries in value:
+                    self.assertTrue(Validator(entries).is_ipfs())
 
-        self.assertTrue(
-            Validator(
-                cid.from_string("QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o")
-            ).is_ipfs()
-        )
-        self.assertFalse(
-            Validator(
-                cid.CIDv0("QmYjtig7VQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o")
-            ).is_ipfs()
-        )
-        self.assertFalse(Validator(cid.CIDv0("dfmqjdmfkjqdm")).is_ipfs())
+        with self.subTest("Test invalid IPFS URL entries from fixtures"):
+            for entry in testing_data.invalid_entries["url"]["ipfs"]:
+                self.assertFalse(Validator(entry).is_ipfs())
+
+        with self.subTest("Test valid IPFS subdomain entries from fixtures"):
+            for entry in testing_data.valid_entries["subdomain"]["ipfs"]:
+                self.assertTrue(Validator(entry).is_ipfs())
+
+        with self.subTest("Test invalid IPFS subdomain entries from fixtures"):
+            for entry in testing_data.invalid_entries["subdomain"]["ipfs"]:
+                self.assertFalse(Validator(entry).is_ipfs())
 
 
-if __name__ == "__main__":  # pragma: no cover
+if __name__ == "__main__":
     unittest.main()
