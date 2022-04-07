@@ -47,6 +47,23 @@ valid_entries = {
             "f01701220c3c4733ec8affd06cf9e9ff50ffc6bcd2ec85a6170004bb709669c31de94391a",
         ],
     },
+    "url": {
+        "ipfs": [
+            "http://ipfs.io/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm?arg=val#hash",
+            "http://ipfs.alexandria.media/ipfs/QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU/content/index.html?arg=val#hash",
+            "http://ipfs.io/ipfs/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm",
+            "https://gateway.pinata.cloud/ipfs/Qmb4sw3sqA7AZsaRZ7vtMwxCduk1ExJL5gVDPcpnP8kxFK/",
+            "https://gateway.pinata.cloud/ipfs/bafybeif5dwlk2sdx5yge4azff2ovsnar63cu37ncw4n24vnqixwamwhxui/",
+            "https://bafybeif5dwlk2sdx5yge4azff2ovsnar63cu37ncw4n24vnqixwamwhxui.ipfs.dweb.link/",
+        ],
+    },
+    "subdomain": {
+        "ipfs": [
+            "http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link",
+            "http://bafybeidvtwx54qr44kidymvhfzefzxhgkieigwth6oswk75zhlzjdmunoy.ipfs.dweb.link/linkify-demo.html",
+            "http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.localhost:8080",
+        ],
+    },
 }
 invalid_entries = {
     "cid": {
@@ -66,5 +83,31 @@ invalid_entries = {
             encode("base58btc", "QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE70"),
             encode("base16", "QmNQuBJ8g4QN6mSLXHekxBbcToPwKxamWNrDdEugxMTDd"),
         ]
+    },
+    "url": {
+        "ipfs": [
+            "http://ipfs.io/ipns/github.com/",
+            "https://Qmb4sw3sqA7AZsaRZ7vtMwxCduk1ExJL5gVDPcpnP8kxFK.ipfs.dweb.link/",
+            "http://ipfs.io/ipns/QmYHNYAaYK5hm3ZhZFx5W9H6xydKDGimjdgJMrMSdnctEm",
+            "https://github.com/ipfs/js-ipfs/blob/master/README.md",
+            "https://google.com",
+            "http://ipfs.io/ipns/github.com/",
+            "https://github.com/ipfs/js-ipfs/blob/master/README.md",
+            "http://ipfs.io/ipns/github.com/",
+            "https://github.com/ipfs/js-ipfs/blob/master/README.md",
+        ],
+    },
+    "subdomain": {
+        "ipfs": [
+            "http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.ipns.dweb.link",
+            "http://not-a-cid.ipfs.dweb.link",
+            "http://QmbWqxBEKC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR.ipfs.dweb.link",
+            "http://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.dweb.link",
+            "http://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link",
+            "http://bafybeiabc2xofh6tdi6vutusorpumwcikw3hf3st4ecjugo6j52f6xwc6q.dweb.link",
+            "http://invalid-hostname-.ipns.dweb.link",
+            "http://www.bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va.ipfs.dweb.link",
+            "http://not-a-cid-or-valid-hostname-.ipns.dweb.link",
+        ],
     },
 }

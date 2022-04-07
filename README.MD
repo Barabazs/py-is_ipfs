@@ -1,6 +1,5 @@
 # py-is_ipfs
-[![Latest release](https://img.shields.io/pypi/v/py-is_ipfs?color=blue&label=release)](https://github.com/Barabazs/py-is_ipfs/releases/latest)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Barabazs/py-is_ipfs/Test?label=Test&logo=github)
+[![Latest release](https://img.shields.io/pypi/v/py-is_ipfs?color=blue&label=release)](https://github.com/Barabazs/py-is_ipfs/releases/latest) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/Barabazs/py-is_ipfs/Test?label=Test&logo=github)
 
 py-is_ipfs is a Python library to identify valid IPFS resources.  
 This project is a work in progress.
@@ -9,7 +8,7 @@ This project is a work in progress.
 ### Installation
 py-is_ipfs is available on PyPI:
 
-`python -m pip install py_is-ipfs`
+`python -m pip install py-is_ipfs`
 
 ### Usage
 
@@ -23,13 +22,17 @@ print(Validator("QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o").is_ipfs())
   * [x] v0
   * [x] v1
 * [ ] URL
-  * [ ] IPFS
+  * [x] IPFS
   * [ ] IPNS
 * [ ] Subdomain
-  * [ ] IPFS
+  * [x] IPFS
   * [ ] IPNS
 * [ ] Path
 * [ ] ...
 
 ## License
 [MIT](https://github.com/Barabazs/py-is_ipfs/blob/main/LICENSE)
+
+## Acknowledgments
+* [Protocol Labs](https://protocol.ai/) for funding this project with a micro grant.
+* [ipfs-shipyard/is-ipfs](https://github.com/ipfs-shipyard/is-ipfs) for the heuristics implemented in JavaScript that this project used as a starting point.
