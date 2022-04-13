@@ -3,6 +3,7 @@ import typing
 
 import cid
 from multibase import decode
+from multibase import get_codec
 
 
 class Validator:
@@ -70,6 +71,30 @@ class Validator:
 
         if pattern == self.subdomainGatewayPattern:
             _hash = _hash.lower()
+            try:
+                if get_codec(_hash).encoding not in ["base32", "base36"]:
+                    return False
+            except:
+                return False
+        elif pattern == self.pathGatewayPattern:
+            if not str(_hash).startswith("Qm"):
+                try:
+                    if get_codec(_hash).encoding not in [
+                        "base2",
+                        "base16",
+                        "base32",
+                        "base32hex",
+                        "base36",
+                        "base36upper",
+                        "base58flickr",
+                        "base58btc",
+                        "base64url",
+                        "base32",
+                        "base36",
+                    ]:
+                        return False
+                except:
+                    pass
 
         return Validator(_hash)._is_CID()
 
