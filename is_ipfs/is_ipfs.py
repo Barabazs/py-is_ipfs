@@ -19,12 +19,13 @@ class Validator:
         self.subdomainGatewayPattern = re.compile(
             r"^https?://(?P<hash>[^/]+)\.(?P<protocol>ip[fn]s)\.[^/?]+"
         )
+        self.pathPattern = re.compile(r"^/(?P<protocol>ip[fn]s)/(?P<hash>[^/?#]+)")
 
     def is_ipfs(self) -> bool:
         """
         Returns True if the provided input is a valid IPFS resource/object or False otherwise.
         """
-        return self._is_CID() or self._is_ipfs_url()
+        return self._is_CID() or self._is_ipfs_url() or self._is_ipfs_path()
 
     def _is_CID(self) -> bool:
         """
@@ -114,3 +115,9 @@ class Validator:
         return self._is_integral_ipfs_url(
             self.pathGatewayPattern,
         )
+
+    def _is_ipfs_path(self) -> bool:
+        """
+        Returns true if the provided string is a valid IPFS path or false otherwise.
+        """
+        return self._is_integral_ipfs_url(self.pathPattern)
