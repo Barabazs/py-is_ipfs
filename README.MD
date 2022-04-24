@@ -28,6 +28,7 @@ print(Validator("QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o").is_ipfs())
   * [x] IPFS
   * [ ] IPNS
 * [ ] Path
+  * [x] IPFS
 * [ ] ...
 
 ## License
