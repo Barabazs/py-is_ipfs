@@ -93,8 +93,6 @@ class Validator:
                         "base58flickr",
                         "base58btc",
                         "base64url",
-                        "base32",
-                        "base36",
                     ]:
                         return False
                 except Exception as error:
@@ -115,7 +113,6 @@ class Validator:
         """
         Returns True if the provided url string is a valid IPFS URL or False otherwise.
         """
-
         return self._is_integral_ipfs_url(
             self.path_gateway_pattern,
         )
