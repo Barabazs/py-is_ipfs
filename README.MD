@@ -21,14 +21,16 @@ print(Validator("QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o").is_ipfs())
 * [x] CID
   * [x] v0
   * [x] v1
-* [ ] URL
+* [x] URL
+  * [x] Path Gateway
+    * [x] IPFS
+    * [x] IPNS
+  * [x] Subdomain Gateway
+    * [x] IPFS
+    * [x] IPNS
+* [x] Path
   * [x] IPFS
-  * [ ] IPNS
-* [ ] Subdomain
-  * [x] IPFS
-  * [ ] IPNS
-* [ ] Path
-  * [x] IPFS
+  * [x] IPNS
 * [ ] ...
 
 ## License
