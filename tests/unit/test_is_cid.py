@@ -9,14 +9,14 @@ class TestCase(unittest.TestCase):
         with self.subTest("Test valid CID entries from testing data"):
             for key, value in testing_data.valid_entries["cid"].items():
                 for entry in value:
-                    result = Validator(entry)._is_CID()
+                    result = Validator(entry)._is_cid()
                     self.assertIsInstance(result, bool)
                     self.assertTrue(result)
 
         with self.subTest("Test invalid CID entries from testing data"):
             for key, value in testing_data.invalid_entries["cid"].items():
                 for entry in value:
-                    result = Validator(entry)._is_CID()
+                    result = Validator(entry)._is_cid()
                     if result is None:
                         print(entry)
                     self.assertIsInstance(result, bool)

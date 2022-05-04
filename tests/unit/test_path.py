@@ -14,6 +14,14 @@ class TestCase(unittest.TestCase):
             for entry in testing_data.invalid_entries["path"]["ipfs"]:
                 self.assertFalse(Validator(entry)._is_ipfs_path())
 
+        with self.subTest("Test valid IPNS path entries from fixtures"):
+            for entry in testing_data.valid_entries["path"]["ipns"]:
+                self.assertTrue(Validator(entry)._is_ipns_path())
+
+        with self.subTest("Test invalid IPNS path entries from fixtures"):
+            for entry in testing_data.invalid_entries["path"]["ipns"]:
+                self.assertFalse(Validator(entry)._is_ipns_path())
+
 
 if __name__ == "__main__":  # pragma: no cover
     unittest.main()

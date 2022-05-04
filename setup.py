@@ -6,7 +6,7 @@ with open("README.MD") as f:
 
 setuptools.setup(
     name="py-is_ipfs",
-    version="0.0.6",
+    version="0.1.0",
     description="Python library to identify valid IPFS resources",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -15,7 +15,7 @@ setuptools.setup(
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
     license="MIT",
     classifiers=[
-        "Development Status :: 3 - Alpha",
+        "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Natural Language :: English",
