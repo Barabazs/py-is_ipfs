@@ -13,13 +13,13 @@ class Validator:
 
     def __init__(self, input: typing.Any):
         self.input = input
-        self.pathGatewayPattern = re.compile(
+        self.path_gateway_pattern = re.compile(
             r"^https?://[^/]+/(?P<protocol>ip[fn]s)/(?P<hash>[^/?#]+)"
         )
-        self.subdomainGatewayPattern = re.compile(
+        self.subdomain_gateway_pattern = re.compile(
             r"^https?://(?P<hash>[^/]+)\.(?P<protocol>ip[fn]s)\.[^/?]+"
         )
-        self.pathPattern = re.compile(r"^/(?P<protocol>ip[fn]s)/(?P<hash>[^/?#]+)")
+        self.path_pattern = re.compile(r"^/(?P<protocol>ip[fn]s)/(?P<hash>[^/?#]+)")
 
     def is_ipfs(self) -> bool:
         """
@@ -70,14 +70,14 @@ class Validator:
 
         _hash = match["hash"]
 
-        if pattern == self.subdomainGatewayPattern:
+        if pattern == self.subdomain_gateway_pattern:
             _hash = _hash.lower()
             try:
                 if get_codec(_hash).encoding not in ["base32", "base36"]:
                     return False
             except:
                 return False
-        elif pattern == self.pathGatewayPattern:
+        elif pattern == self.path_gateway_pattern:
             if not str(_hash).startswith("Qm"):
                 try:
                     if get_codec(_hash).encoding not in [
@@ -104,7 +104,7 @@ class Validator:
         Returns True if the provided url string includes a valid IPFS subdomain (case-insensitive CIDv1) or False otherwise.
         """
         return self._is_integral_ipfs_url(
-            self.subdomainGatewayPattern,
+            self.subdomain_gateway_pattern,
         )
 
     def _ipfs_path_url(self) -> bool:
@@ -113,11 +113,11 @@ class Validator:
         """
 
         return self._is_integral_ipfs_url(
-            self.pathGatewayPattern,
+            self.path_gateway_pattern,
         )
 
     def _is_ipfs_path(self) -> bool:
         """
         Returns true if the provided string is a valid IPFS path or false otherwise.
         """
-        return self._is_integral_ipfs_url(self.pathPattern)
+        return self._is_integral_ipfs_url(self.path_pattern)
