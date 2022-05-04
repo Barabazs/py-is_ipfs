@@ -36,13 +36,15 @@ class Validator:
         elif type(self.input) == bytes:
             try:
                 return cid.is_cid(decode(self.input))
-            except:
+            except Exception as error:
+                print(f"Unexpected {type(error)}, {error}")
                 return False
         else:
             try:
                 if isinstance(self.input, (cid.CIDv0, cid.CIDv1)):
                     return cid.is_cid(str(self.input))
-            except:
+            except Exception as error:
+                print(f"Unexpected {type(error)}, {error}")
                 return False
         return False
 
@@ -75,7 +77,8 @@ class Validator:
             try:
                 if get_codec(_hash).encoding not in ["base32", "base36"]:
                     return False
-            except:
+            except Exception as error:
+                print(f"Unexpected {type(error)}, {error}")
                 return False
         elif pattern == self.path_gateway_pattern:
             if not str(_hash).startswith("Qm"):
@@ -94,8 +97,9 @@ class Validator:
                         "base36",
                     ]:
                         return False
-                except:
-                    pass
+                except Exception as error:
+                    print(f"Unexpected {type(error)}, {error}")
+                    return False
 
         return Validator(_hash)._is_CID()
 
