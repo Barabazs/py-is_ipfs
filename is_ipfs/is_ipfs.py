@@ -25,9 +25,9 @@ class Validator:
         """
         Returns True if the provided input is a valid IPFS resource/object or False otherwise.
         """
-        return self._is_CID() or self._is_ipfs_url() or self._is_ipfs_path()
+        return self._is_cid() or self._is_ipfs_url() or self._is_ipfs_path()
 
-    def _is_CID(self) -> bool:
+    def _is_cid(self) -> bool:
         """
         Returns True if the provided string or CID object represents a valid CID or False otherwise.
         """
@@ -99,7 +99,7 @@ class Validator:
                     print(f"Unexpected {type(error)}, {error}")
                     return False
 
-        return Validator(_hash)._is_CID()
+        return Validator(_hash)._is_cid()
 
     def _ipfs_subdomain_url(self) -> bool:
         """
