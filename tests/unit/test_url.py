@@ -1,6 +1,7 @@
-from is_ipfs import Validator
 import unittest
-import tests.testing_data as testing_data
+
+from is_ipfs import Validator
+from tests import testing_data
 
 
 class TestCase(unittest.TestCase):
