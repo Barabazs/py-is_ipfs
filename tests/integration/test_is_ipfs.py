@@ -65,6 +65,22 @@ class TestCase(unittest.TestCase):
             for entry in testing_data.invalid_entries["path"]["ipns"]:
                 self.assertFalse(Validator(entry).is_ipfs())
 
+        with self.subTest("Test valid IPFS native URL entries from fixtures"):
+            for entry in testing_data.valid_entries["native_url"]["ipfs"]:
+                self.assertTrue(Validator(entry).is_ipfs())
 
-if __name__ == "__main__":
+        with self.subTest("Test invalid IPFS native URL entries from fixtures"):
+            for entry in testing_data.invalid_entries["native_url"]["ipfs"]:
+                self.assertFalse(Validator(entry).is_ipfs())
+
+        with self.subTest("Test valid IPNS native URL entries from fixtures"):
+            for entry in testing_data.valid_entries["native_url"]["ipns"]:
+                self.assertTrue(Validator(entry).is_ipfs())
+
+        with self.subTest("Test invalid IPNS native URL from fixtures"):
+            for entry in testing_data.invalid_entries["native_url"]["ipns"]:
+                self.assertFalse(Validator(entry).is_ipfs())
+
+
+if __name__ == "__main__":  # pragma: no cover
     unittest.main()
