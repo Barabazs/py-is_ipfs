@@ -31,6 +31,9 @@ print(Validator("QmYjtig7VJQ6XsnUjqqJvj7QaMcCAwtrgNdahSiFofrE7o").is_ipfs())
 * [x] Path
   * [x] IPFS
   * [x] IPNS
+* [x] Native URL
+  * [x] IPFS
+  * [x] IPNS
 * [ ] ...
 
 ## License

@@ -125,6 +125,25 @@ valid_entries = {
             "/ipns/uAXIAJAgBEiB6C43WeEQO-iBUnhM_SS2I_pHzemJnV7m_TKgqgiiJoQ",  # base64url
         ],
     },
+    "native_url": {
+        "ipfs": [
+            "ipfs://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va",  # base32
+            "ipfs://bafybeidvtwx54qr44kidymvhfzefzxhgkieigwth6oswk75zhlzjdmunoy/linkify-demo.html",  # base32
+            "ipfs://bafybeie5gq4jxvzmsym6hjlwxej4rwdoxt7wadqvmmwbqi7r27fclha2va",  # base32
+            "ipfs://bafybeigdyrzt5sfp7udm7hu76uh7y26nf3efuylqabf3oclgtqy55fbzdi/",  # base32
+            "ipfs://k2jmtxw8rjh1z69c6not3wtdxb0u3urbzhyll1t9jg6ox26dhi5sfi1m/",  # base36
+        ],
+        "ipns": [
+            "ipns://docs.ipfs.io.ipns.localhost:8080/some/path",
+            "ipns://docs.ipfs.io.ipns.foo.bar.buzz.dweb.link",
+            "ipns://docs.ipfs.io.ipns.locahost:8080",
+            "ipns://en-wikipedia--on--ipfs-org.ipns.dweb.link",
+            "ipns://cid.ipfs.io",
+            "ipns://ipfs-io.ipns.dweb.link/",
+            "ipns://k51qzi5uqu5dj83g1ajm0a9z06fny53f7cb5co9k6pvo8b0yr871vinhrohbq9",  # base36
+            "ipns://K51QZI5UQU5DJ83G1AJM0A9Z06FNY53F7CB5CO9K6PVO8B0YR871VINHROHBQ9/path#title",  # base36upper
+        ],
+    },
 }
 
 invalid_entries = {
@@ -206,6 +225,26 @@ invalid_entries = {
             "/foo.bar",
             "/ipns/1234",
             "/ipns/mAXASIMPEcz7Ir/0Gz56f9Q/8a80uyFphcABLtwlmnDHelDka",
+        ],
+    },
+    "native_url": {
+        "ipfs": [
+            "ipfs://js-ipfs/blob/master/README.md",
+            "ipfs://QmcNioXSC1bfJj1dcFErhUfyjFzoX2HodkRccsFFVJJvg8.ipns.dweb.link",
+            "ipfs://QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU"
+            "ipfs://foo/QmeWz9YZEeNFXQhHg4PnR5ZiNr5isttgi5n1tc1eD5EfGU",
+            "foo://bar",
+            "ipfs:/mAXASIMPEcz7Ir/0Gz56f9Q/8a80uyFphcABLtwlmnDHelDka",
+            "ipfs://1234",
+        ],
+        "ipns": [
+            "ipns://bafzaajaiaejca6qlrxlhqrao7iqfjhqth5es3ch6shzxuythk6436tfifkbcrcnb",
+            "ipns://qmbwqxbekC3P8tqsKc98xmWNzrzDtRLMiMPL8wBuTGsMnR",
+            "ipfs://js-ipfs/blob/master/README.md",
+            "ipns://en-wikipedia--on--ipfs-org/",
+            "foo://bar",
+            "ipns:///1234",
+            "ipns:///mAXASIMPEcz7Ir/0Gz56f9Q/8a80uyFphcABLtwlmnDHelDka",
         ],
     },
 }

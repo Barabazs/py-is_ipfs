@@ -21,6 +21,9 @@ class Validator:
             r"^https?://(?P<hash>[^/]+)\.(?P<protocol>ip[fn]s)\.[^/?]+"
         )
         self.path_pattern = re.compile(r"^/(?P<protocol>ip[fn]s)/(?P<hash>[^/?#]+)")
+        self.native_url_pattern = re.compile(
+            r"^(?P<protocol>ip[fn]s)://(?P<hash>[^/?#]+)"
+        )
 
     def is_ipfs(self) -> bool:
         """
@@ -32,6 +35,8 @@ class Validator:
             or self._is_ipns_url()
             or self._is_ipfs_path()
             or self._is_ipns_path()
+            or self._is_native_ipfs_url()
+            or self._is_native_ipns_url()
         )
 
     def _is_cid(self) -> bool:
@@ -75,7 +80,10 @@ class Validator:
 
         _hash = match["hash"]
 
-        if pattern == self.subdomain_gateway_pattern:
+        if (
+            pattern == self.subdomain_gateway_pattern
+            or pattern == self.native_url_pattern
+        ):
             _hash = _hash.lower()
             try:
                 if get_codec(_hash).encoding not in ["base32", "base36"]:
@@ -152,7 +160,10 @@ class Validator:
 
         ipns_id = match["hash"]
 
-        if ipns_id and pattern == self.subdomain_gateway_pattern:
+        if (ipns_id) and (
+            pattern == self.subdomain_gateway_pattern
+            or pattern == self.native_url_pattern
+        ):
             ipns_id = ipns_id.lower()
 
             if Validator(ipns_id)._is_cid():
@@ -163,7 +174,9 @@ class Validator:
                     print(f"Unexpected {type(error)}, {error}")
                     return False
             try:
-                if "." not in ipns_id and "-" in ipns_id:
+                if ("." not in ipns_id and "-" in ipns_id) and (
+                    pattern == self.subdomain_gateway_pattern
+                ):
                     ipns_id = (
                         ipns_id.replace("--", "@").replace("-", ".").replace("@", "-")
                     )
@@ -234,3 +247,19 @@ class Validator:
         )
         hostname = urlparse(f"http://{input_string}").hostname
         return bool(re.search(fqdn_with_tld, hostname))
+
+    def _is_native_ipfs_url(self) -> bool:
+        """
+        Returns True if the provided string is a valid IPFS native URL or False otherwise.
+        """
+        return self._is_integral_ipfs_url(
+            self.native_url_pattern,
+        )
+
+    def _is_native_ipns_url(self) -> bool:
+        """
+        Returns True if the provided string is a valid IPNS native URL or False otherwise.
+        """
+        return self._is_integral_ipns_url(
+            self.native_url_pattern,
+        )
