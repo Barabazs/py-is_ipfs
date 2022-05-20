@@ -30,4 +30,4 @@ jobs:
           python -m pip install --upgrade tox
       - name: Test with tox
         run: |
-          tox
+          tox -e py
