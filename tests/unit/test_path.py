@@ -8,19 +8,19 @@ class TestCase(unittest.TestCase):
     def tests_is_ipfs_path(self):
         with self.subTest("Test valid IPFS path entries from fixtures"):
             for entry in testing_data.valid_entries["path"]["ipfs"]:
-                self.assertTrue(Validator(entry)._is_ipfs_path())
+                self.assertTrue(Validator(entry)._is_ipfs_path(), entry)
 
         with self.subTest("Test invalid IPFS path entries from fixtures"):
             for entry in testing_data.invalid_entries["path"]["ipfs"]:
-                self.assertFalse(Validator(entry)._is_ipfs_path())
+                self.assertFalse(Validator(entry)._is_ipfs_path(), entry)
 
         with self.subTest("Test valid IPNS path entries from fixtures"):
             for entry in testing_data.valid_entries["path"]["ipns"]:
-                self.assertTrue(Validator(entry)._is_ipns_path())
+                self.assertTrue(Validator(entry)._is_ipns_path(), entry)
 
         with self.subTest("Test invalid IPNS path entries from fixtures"):
             for entry in testing_data.invalid_entries["path"]["ipns"]:
-                self.assertFalse(Validator(entry)._is_ipns_path())
+                self.assertFalse(Validator(entry)._is_ipns_path(), entry)
 
 
 if __name__ == "__main__":  # pragma: no cover
