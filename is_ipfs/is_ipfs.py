@@ -80,18 +80,19 @@ class Validator:
 
         _hash = match["hash"]
 
-        if (
-            pattern == self.subdomain_gateway_pattern
-            or pattern == self.native_url_pattern
-        ):
+        if pattern == self.subdomain_gateway_pattern:
             _hash = _hash.lower()
             try:
-                if get_codec(_hash).encoding not in ["base32", "base36"]:
+                if get_codec(_hash).encoding not in ["base32", "base32hex", "base36"]:
                     return False
             except ValueError as error:
                 print(f"Unexpected ValueError, {error}")
                 return False
-        elif pattern == self.path_gateway_pattern:
+        elif (
+            (pattern == self.path_gateway_pattern)
+            or (pattern == self.native_url_pattern)
+            or (pattern == self.path_pattern)
+        ):
             if not str(_hash).startswith("Qm"):
                 try:
                     if get_codec(_hash).encoding not in [
@@ -160,10 +161,7 @@ class Validator:
 
         ipns_id = match["hash"]
 
-        if (ipns_id) and (
-            pattern == self.subdomain_gateway_pattern
-            or pattern == self.native_url_pattern
-        ):
+        if pattern == self.subdomain_gateway_pattern:
             ipns_id = ipns_id.lower()
 
             if Validator(ipns_id)._is_cid():
@@ -186,7 +184,11 @@ class Validator:
                 print(f"Unexpected ValueError, {error}")
                 return False
 
-        elif pattern == self.path_gateway_pattern or pattern == self.path_pattern:
+        elif (
+            (pattern == self.path_gateway_pattern)
+            or (pattern == self.path_pattern)
+            or (pattern == self.native_url_pattern)
+        ):
             if not str(ipns_id).startswith("Qm"):
                 if self._id_is_explicit_tld(ipns_id):
                     return True
