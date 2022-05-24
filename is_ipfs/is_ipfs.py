@@ -112,7 +112,7 @@ class Validator:
 
         return Validator(_hash)._is_cid()
 
-    def _ipfs_subdomain_url(self) -> bool:
+    def _is_ipfs_subdomain_url(self) -> bool:
         """
         Returns True if the provided url string includes a valid IPFS subdomain (case-insensitive CIDv1) or False otherwise.
         """
@@ -120,7 +120,7 @@ class Validator:
             self.subdomain_gateway_pattern,
         )
 
-    def _ipfs_path_url(self) -> bool:
+    def _is_ipfs_path_url(self) -> bool:
         """
         Returns True if the provided url string is a valid IPFS URL or False otherwise.
         """
@@ -132,7 +132,7 @@ class Validator:
         """
         Returns True if the provided string is a valid IPFS url or False otherwise.
         """
-        return self._ipfs_path_url() or self._ipfs_subdomain_url()
+        return self._is_ipfs_path_url() or self._is_ipfs_subdomain_url()
 
     def _is_ipfs_path(self) -> bool:
         """
@@ -210,7 +210,7 @@ class Validator:
 
         return Validator(ipns_id)._is_cid()
 
-    def _ipns_subdomain_url(self) -> bool:
+    def _is_ipns_subdomain_url(self) -> bool:
         """
         Returns True if the provided url string includes a valid IPFS subdomain (case-insensitive CIDv1) or False otherwise.
         """
@@ -218,7 +218,7 @@ class Validator:
             self.subdomain_gateway_pattern,
         )
 
-    def _ipns_path_url(self) -> bool:
+    def _is_ipns_path_url(self) -> bool:
         """
         Returns True if the provided url string is a valid IPFS URL or False otherwise.
         """
@@ -230,7 +230,7 @@ class Validator:
         """
         Returns True if the provided string is a valid IPFS url or False otherwise.
         """
-        return self._ipns_path_url() or self._ipns_subdomain_url()
+        return self._is_ipns_path_url() or self._is_ipns_subdomain_url()
 
     def _is_ipns_path(self) -> bool:
         """
