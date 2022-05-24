@@ -48,15 +48,15 @@ class Validator:
         elif type(self.input) == bytes:
             try:
                 return cid.is_cid(decode(self.input))
-            except Exception as error:
-                print(f"Unexpected {type(error)}, {error}")
+            except ValueError as error:
+                print(f"Unexpected ValueError, {error}")
                 return False
         else:
             try:
                 if isinstance(self.input, (cid.CIDv0, cid.CIDv1)):
                     return cid.is_cid(str(self.input))
-            except Exception as error:
-                print(f"Unexpected {type(error)}, {error}")
+            except ValueError as error:
+                print(f"Unexpected ValueError, {error}")
                 return False
         return False
 
@@ -80,18 +80,19 @@ class Validator:
 
         _hash = match["hash"]
 
-        if (
-            pattern == self.subdomain_gateway_pattern
-            or pattern == self.native_url_pattern
-        ):
+        if pattern == self.subdomain_gateway_pattern:
             _hash = _hash.lower()
             try:
-                if get_codec(_hash).encoding not in ["base32", "base36"]:
+                if get_codec(_hash).encoding not in ["base32", "base32hex", "base36"]:
                     return False
-            except Exception as error:
-                print(f"Unexpected {type(error)}, {error}")
+            except ValueError as error:
+                print(f"Unexpected ValueError, {error}")
                 return False
-        elif pattern == self.path_gateway_pattern:
+        elif (
+            (pattern == self.path_gateway_pattern)
+            or (pattern == self.native_url_pattern)
+            or (pattern == self.path_pattern)
+        ):
             if not str(_hash).startswith("Qm"):
                 try:
                     if get_codec(_hash).encoding not in [
@@ -106,13 +107,13 @@ class Validator:
                         "base64url",
                     ]:
                         return False
-                except Exception as error:
-                    print(f"Unexpected {type(error)}, {error}")
+                except ValueError as error:
+                    print(f"Unexpected ValueError, {error}")
                     return False
 
         return Validator(_hash)._is_cid()
 
-    def _ipfs_subdomain_url(self) -> bool:
+    def _is_ipfs_subdomain_url(self) -> bool:
         """
         Returns True if the provided url string includes a valid IPFS subdomain (case-insensitive CIDv1) or False otherwise.
         """
@@ -120,7 +121,7 @@ class Validator:
             self.subdomain_gateway_pattern,
         )
 
-    def _ipfs_path_url(self) -> bool:
+    def _is_ipfs_path_url(self) -> bool:
         """
         Returns True if the provided url string is a valid IPFS URL or False otherwise.
         """
@@ -132,7 +133,7 @@ class Validator:
         """
         Returns True if the provided string is a valid IPFS url or False otherwise.
         """
-        return self._ipfs_path_url() or self._ipfs_subdomain_url()
+        return self._is_ipfs_path_url() or self._is_ipfs_subdomain_url()
 
     def _is_ipfs_path(self) -> bool:
         """
@@ -160,18 +161,15 @@ class Validator:
 
         ipns_id = match["hash"]
 
-        if (ipns_id) and (
-            pattern == self.subdomain_gateway_pattern
-            or pattern == self.native_url_pattern
-        ):
+        if pattern == self.subdomain_gateway_pattern:
             ipns_id = ipns_id.lower()
 
             if Validator(ipns_id)._is_cid():
                 try:
                     if get_codec(ipns_id).encoding == "base36":
                         return True
-                except Exception as error:
-                    print(f"Unexpected {type(error)}, {error}")
+                except ValueError as error:
+                    print(f"Unexpected ValueError, {error}")
                     return False
             try:
                 if ("." not in ipns_id and "-" in ipns_id) and (
@@ -182,11 +180,15 @@ class Validator:
                     )
 
                 return self._id_is_explicit_tld(ipns_id)
-            except Exception as error:
-                print(f"Unexpected {type(error)}, {error}")
+            except ValueError as error:
+                print(f"Unexpected ValueError, {error}")
                 return False
 
-        elif pattern == self.path_gateway_pattern or pattern == self.path_pattern:
+        elif (
+            (pattern == self.path_gateway_pattern)
+            or (pattern == self.path_pattern)
+            or (pattern == self.native_url_pattern)
+        ):
             if not str(ipns_id).startswith("Qm"):
                 if self._id_is_explicit_tld(ipns_id):
                     return True
@@ -204,13 +206,13 @@ class Validator:
                         "base64url",
                     ]:
                         return False
-                except Exception as error:
-                    print(f"Unexpected {type(error)}, {error}")
+                except ValueError as error:
+                    print(f"Unexpected ValueError, {error}")
                     return False
 
         return Validator(ipns_id)._is_cid()
 
-    def _ipns_subdomain_url(self) -> bool:
+    def _is_ipns_subdomain_url(self) -> bool:
         """
         Returns True if the provided url string includes a valid IPFS subdomain (case-insensitive CIDv1) or False otherwise.
         """
@@ -218,7 +220,7 @@ class Validator:
             self.subdomain_gateway_pattern,
         )
 
-    def _ipns_path_url(self) -> bool:
+    def _is_ipns_path_url(self) -> bool:
         """
         Returns True if the provided url string is a valid IPFS URL or False otherwise.
         """
@@ -230,7 +232,7 @@ class Validator:
         """
         Returns True if the provided string is a valid IPFS url or False otherwise.
         """
-        return self._ipns_path_url() or self._ipns_subdomain_url()
+        return self._is_ipns_path_url() or self._is_ipns_subdomain_url()
 
     def _is_ipns_path(self) -> bool:
         """
