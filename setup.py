@@ -6,7 +6,7 @@ with open("README.MD") as f:
 
 setuptools.setup(
     name="py-is_ipfs",
-    version="0.3.0",
+    version="0.4.0",
     description="Python library to identify valid IPFS resources",
     long_description=long_description,
     long_description_content_type="text/markdown",
