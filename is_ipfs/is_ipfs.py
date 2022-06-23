@@ -248,7 +248,7 @@ class Validator:
             r"(?=^.{4,253}\.?$)(^((?!-)[a-zA-Z0-9-]{1,63}(?<!-)\.)+[a-zA-Z]{2,63}$)"
         )
         hostname = urlparse(f"http://{input_string}").hostname
-        return bool(re.search(fqdn_with_tld, hostname))
+        return bool(re.search(fqdn_with_tld, hostname)) if hostname else False
 
     def _is_native_ipfs_url(self) -> bool:
         """

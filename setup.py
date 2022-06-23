@@ -6,13 +6,17 @@ with open("README.MD") as f:
 
 setuptools.setup(
     name="py-is_ipfs",
-    version="0.4.0",
+    version="0.5.0",
     description="Python library to identify valid IPFS resources",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Barabazs/py-is_ipfs",
     author="Barabazs",
     packages=setuptools.find_packages(exclude=["tests", "tests.*"]),
+    package_data={
+        "cid-stubs": ["__init__.pyi", "cid.pyi"],
+        "multibase-stubs": ["__init__.pyi", "converters.pyi", "multibase.pyi"],
+    },
     license="MIT",
     classifiers=[
         "Development Status :: 4 - Beta",
