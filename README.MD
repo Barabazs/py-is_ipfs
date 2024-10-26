@@ -1,6 +1,5 @@
 # py-is_ipfs
-[![Latest release](https://img.shields.io/pypi/v/py-is_ipfs?color=blue&label=release)](https://github.com/Barabazs/py-is_ipfs/releases/latest) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/barabazs/py-is_ipfs/.github%2Fworkflows%2Ftest.yml)
-
+[![Latest release](https://img.shields.io/pypi/v/py-is_ipfs?color=blue&label=release)](https://github.com/Barabazs/py-is_ipfs/releases/latest) ![GitHub Actions Workflow Status](https://img.shields.io/github/actions/workflow/status/barabazs/py-is_ipfs/.github%2Fworkflows%2Ftest.yml?logo=github&label=Tests)
 
 py-is_ipfs is a Python library to identify valid IPFS resources.  
 This project is a work in progress.
