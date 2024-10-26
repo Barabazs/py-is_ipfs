@@ -31,7 +31,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.10",
     ],
     install_requires=[
-        "py-cid>=0.3.0<1.0.0",
+        "py-cid>=0.3.0,<1.0.0",
         "py-multibase>=1.0.3,<2.0.0",
     ],
 )
